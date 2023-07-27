@@ -1,6 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const morgan = require('morgan');
 //initializations
 const app = express();
 
@@ -20,10 +21,12 @@ app.engine(
 app.set('view engine', '.hbs'); //aqui el motor de plantillas es engine
 //Middlewares
 app.use(express.urlencoded({ extended: false }));
+app.use(morgan('dev'));
 //Gloval variables
 
 //Routes
 app.use(require('./routes/index.routes'));
+app.use(require('./routes/notes.routes'));
 
 //Static files
 app.use(express.static(path.join(__dirname + '/public'))); //express.static(): define donde esta la carpeta pulica

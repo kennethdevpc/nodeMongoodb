@@ -17,4 +17,4 @@ UserSchema.methods.encrypPassword = async (password) => {
 UserSchema.methods.matchPassword = async function (password) {
   return await bycrypt.compare(password, this.password);
 };
-module.exports(model('User', UserSchema));
+module.exports = model('User', UserSchema);
