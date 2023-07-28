@@ -11,20 +11,25 @@ notesCtrl.createNewNote = async (req, res) => {
   await newNote.save();
 
   console.log(newNote);
-  res.send('note createNewNote');
+  res.redirect('/notes');
 };
 notesCtrl.renderNotes = async (req, res) => {
   const notes = await Note.find().lean();
   console.log(notes);
   res.render('notes/all-notes', { notes });
 };
-notesCtrl.renderEditForm = (req, res) => {
-  res.send('render edit form');
+notesCtrl.renderEditForm = async (req, res) => {
+  const note = await Note.findById(req.params.id).lean();
+  console.log(note);
+  res.render('notes/edit-note', { note });
 };
-notesCtrl.updateNote = (req, res) => {
-  res.send('updatenote');
+notesCtrl.updateNote = async (req, res) => {
+  const { title, description } = req.body;
+  await Note.findByIdAndUpdate(req.params.id, { title, description });
+  res.redirect('/notes');
 };
-notesCtrl.deleteNote = (req, res) => {
-  res.send('delete note');
+notesCtrl.deleteNote = async (req, res) => {
+  await Note.findByIdAndDelete(req.params.id);
+  res.redirect('/notes');
 };
 module.exports = notesCtrl;

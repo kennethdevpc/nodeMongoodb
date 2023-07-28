@@ -9,10 +9,9 @@
 
           </h4>
           <p>{{description}}</p>
-          <form action='/notes/delete/{{_id}}' method='POST'>
+          <form action='/notes/delete/{{_id}}?_method=DELETE' method='POST'>
             <button type='submit' class='btn btn-danger btn-block btn-sm'>Delete</button>
           </form>
-
         </div>
       </div>
     </div>
