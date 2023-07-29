@@ -1,3 +1,7 @@
 body {
   background-image: linear-gradient(135deg, #f9ff01 10%, #10a714 100%);
 }
+
+.logo {
+  width: 30%;
+}
