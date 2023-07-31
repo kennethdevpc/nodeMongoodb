@@ -9,16 +9,18 @@ const {
   deleteNote,
 } = require('../controllers/notes.controller');
 
+const { isAuthenticated } = require('../helpers/auth');
+
 //New note
-router.get('/notes/add', renderNoteForm);
-router.post('/notes/new-node', createNewNote);
+router.get('/notes/add', isAuthenticated, renderNoteForm);
+router.post('/notes/new-node', isAuthenticated, createNewNote);
 //Get all Note
-router.get('/notes', renderNotes);
+router.get('/notes', isAuthenticated, renderNotes);
 //Edit notes
-router.get('/notes/edit/:id', renderEditForm);
-router.put('/notes/edit/:id', updateNote);
+router.get('/notes/edit/:id', isAuthenticated, renderEditForm);
+router.put('/notes/edit/:id', isAuthenticated, updateNote);
 
 //Edit notes
-router.delete('/notes/delete/:id', deleteNote);
+router.delete('/notes/delete/:id', isAuthenticated, deleteNote);
 
 module.exports = router;
